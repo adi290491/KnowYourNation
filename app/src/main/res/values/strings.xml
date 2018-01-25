@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">CountryInfo</string>
+    <string name="capital">Capital: </string>
+    <string name="area">Area: </string>
+    <string name="region">Region: </string>
+    <string name="subRegion">Sub Region: </string>
+    <string name="coordinates">Coordinates: </string>
+    <string name="borders">Borders: </string>
+    <string name="population">Population: </string>
+    <string name="timezone">Timezones:</string>
+    <string name="native_name">Native Name: </string>
+    <string name="currency">Currency: </string>
+    <string name="regional_bloc">Regional Bloc: </string>
+    <string name="language">Language:</string>
+    <string name="calling_code">Calling Code</string>
+    <string name="top_level_domain">Top Level Domain</string>
+    <string name="translation">Translations:</string>
+    <string name="demonym">Demonym:</string>
+</resources>
