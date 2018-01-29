@@ -87,11 +87,10 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"/>
 
-        <TextView
-            android:id="@+id/tv_currency"
-            android:layout_width="match_parent"
+        <include
+            layout="@layout/currency_layout"
             android:layout_height="wrap_content"
-            android:textSize="16sp"/>
+            android:layout_width="match_parent"/>
 
         <TextView
             android:id="@+id/tv_regional_bloc"
@@ -99,11 +98,10 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"/>
 
-        <TextView
-            android:id="@+id/tv_language"
+        <include
+            layout="@layout/language_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"/>
+            android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/tv_calling_code"

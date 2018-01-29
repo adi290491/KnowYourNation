@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_currency_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/currency"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_currency_code_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/currency_code"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_currency_title" />
+
+    <TextView
+        android:id="@+id/tv_currency_code_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:text="INR"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_currency_code_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_currency_title"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tv_currency_name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/currency_name"
+        android:textSize="16sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@id/tv_currency_code_label"
+        app:layout_constraintRight_toRightOf="@id/tv_currency_code_label"
+        app:layout_constraintTop_toBottomOf="@+id/tv_currency_code_label" />
+
+    <TextView
+        android:id="@+id/tv_currency_name_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Code"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_currency_name_label"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="@id/tv_currency_code_value"
+        app:layout_constraintRight_toRightOf="@id/tv_currency_code_value"
+        app:layout_constraintTop_toBottomOf="@+id/tv_currency_code_value" />
+
+    <TextView
+        android:id="@+id/tv_currency_symbol_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/currency_symbol"
+        android:textSize="16sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@id/tv_currency_name_label"
+        app:layout_constraintRight_toRightOf="@id/tv_currency_name_label"
+        app:layout_constraintTop_toBottomOf="@+id/tv_currency_name_label" />
+
+    <TextView
+        android:id="@+id/tv_currency_symbol_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="$"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_currency_name_value"
+        app:layout_constraintLeft_toLeftOf="@id/tv_currency_name_value"
+        app:layout_constraintRight_toRightOf="@id/tv_currency_name_value"
+        app:layout_constraintTop_toBottomOf="@+id/tv_currency_name_value" />
+
+</android.support.constraint.ConstraintLayout>

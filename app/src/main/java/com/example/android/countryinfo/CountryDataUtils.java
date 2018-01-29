@@ -17,6 +17,10 @@ import android.widget.ImageView;
 
 import com.caverock.androidsvg.SVG;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -24,6 +28,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -76,16 +82,43 @@ public final class CountryDataUtils {
         return getFormattedString(context, R.string.native_name, nativeName);
     }
 
-    public static SpannableStringBuilder getFormattedCurrency(Context context, String currency) {
-        return getFormattedString(context, R.string.currency, currency);
+    public static Currency getFormattedCurrency(Context context, String currencyString) {
+        try {
+            JSONObject currencyJson = new JSONObject(currencyString);
+            Currency currency = new Currency();
+            String code = currencyJson.has("code") ? currencyJson.getString("code") : "";
+            String name = currencyJson.has("name") ? currencyJson.getString("name") : "";
+            String symbol = currencyJson.has("symbol") ? currencyJson.getString("symbol") : "";
+
+            currency.setCode(code);
+            currency.setName(name);
+            currency.setSymbol(symbol);
+
+            return currency;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static SpannableStringBuilder getFormattedRegionalBloc(Context context, String regionalBloc) {
         return getFormattedString(context, R.string.regional_bloc, regionalBloc);
     }
 
-    public static SpannableStringBuilder getFormattedLanguage(Context context, String language) {
-        return getFormattedString(context, R.string.language, language);
+    public static List<String> getFormattedLanguage(Context context, String languageString) {
+        List<String> languageList = new ArrayList<>();
+        try {
+            JSONArray languageJsonArr = new JSONArray(languageString);
+            for(int i=0; i < languageJsonArr.length(); i++){
+                JSONObject languageJson = languageJsonArr.getJSONObject(i);
+                String name = languageJson.getString("name");
+                languageList.add(name);
+            }
+            return languageList;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static SpannableStringBuilder getFormattedCallingCode(Context context, String callingCode) {

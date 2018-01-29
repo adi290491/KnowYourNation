@@ -9,11 +9,14 @@
     <string name="population">Population: </string>
     <string name="timezone">Timezones:</string>
     <string name="native_name">Native Name: </string>
-    <string name="currency">Currency: </string>
+    <string name="currency">Currency</string>
     <string name="regional_bloc">Regional Bloc: </string>
     <string name="language">Language:</string>
     <string name="calling_code">Calling Code</string>
     <string name="top_level_domain">Top Level Domain</string>
     <string name="translation">Translations:</string>
     <string name="demonym">Demonym:</string>
+    <string name="currency_code">Code</string>
+    <string name="currency_name">Currency Name</string>
+    <string name="currency_symbol">Currency Symbol</string>
 </resources>

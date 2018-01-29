@@ -4,14 +4,21 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.List;
 
 public class CountryDetailActivity extends AppCompatActivity {
 
     TextView tvName, tvCapital, tvArea, tvRegion, tvSubRegion, tvCoord, tvBorders, tvPopulation, tvTimezones;
     TextView tvNativeName, tvCurrency, tvRegionalBloc, tvLanguage, tvCallingCode, tvTopLevelDomain, tvTranslations, tvDemonym;
+    TextView tvCurrencyCode, tvCurrencyName, tvCurrencySymbol;
     private ImageView flagImageView;
+    private LinearLayout languageContainer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,14 +41,21 @@ public class CountryDetailActivity extends AppCompatActivity {
         tvPopulation = (TextView) findViewById(R.id.tv_population);
         tvTimezones = (TextView) findViewById(R.id.tv_timezones);
         tvNativeName = (TextView) findViewById(R.id.tv_native_name);
-        tvCurrency = (TextView) findViewById(R.id.tv_currency);
+        initCurrency();
         tvRegionalBloc = (TextView) findViewById(R.id.tv_regional_bloc);
         flagImageView = (ImageView) findViewById(R.id.iv_flag);
-        tvLanguage = (TextView) findViewById(R.id.tv_language);
+
         tvCallingCode = (TextView) findViewById(R.id.tv_calling_code);
         tvTopLevelDomain = (TextView) findViewById(R.id.tv_top_level_domain);
         tvTranslations = (TextView) findViewById(R.id.tv_translations);
         tvDemonym = (TextView) findViewById(R.id.tv_demonym);
+        languageContainer = (LinearLayout) findViewById(R.id.language_container);
+    }
+
+    private void initCurrency() {
+        tvCurrencyCode = (TextView) findViewById(R.id.tv_currency_code_value);
+        tvCurrencyName = (TextView) findViewById(R.id.tv_currency_name_value);
+        tvCurrencySymbol = (TextView) findViewById(R.id.tv_currency_symbol_value);
     }
 
     private void fetchCountryDetails(String countryName) {
@@ -96,7 +110,10 @@ public class CountryDetailActivity extends AppCompatActivity {
 
         String currency = cursor.getString(cursor.getColumnIndex(CountryContract.CountryEntry.CURRENCIES));
         Log.d("tag", currency);
-        tvCurrency.setText(CountryDataUtils.getFormattedCurrency(this, currency));
+        Currency curr = CountryDataUtils.getFormattedCurrency(this, currency);
+        tvCurrencyCode.setText(curr.getCode());
+        tvCurrencyName.setText(curr.getName());
+        tvCurrencySymbol.setText(curr.getSymbol());
 
         String regionalBloc = cursor.getString(cursor.getColumnIndex(CountryContract.CountryEntry.REGIONAL_BLOCS));
         Log.d("tag", regionalBloc);
@@ -104,7 +121,8 @@ public class CountryDetailActivity extends AppCompatActivity {
 
         String language = cursor.getString(cursor.getColumnIndex(CountryContract.CountryEntry.LANGUAGES));
         Log.d("tag", language);
-        tvLanguage.setText(CountryDataUtils.getFormattedLanguage(this, language));
+        List<String> languageList = CountryDataUtils.getFormattedLanguage(this, language);
+        populateLanguage(languageList);
 
         String callingCode = cursor.getString(cursor.getColumnIndex(CountryContract.CountryEntry.CALLING_CODE));
         Log.d("tag", callingCode);
@@ -124,4 +142,19 @@ public class CountryDetailActivity extends AppCompatActivity {
 
     }
 
+    private void populateLanguage(List<String> languageList) {
+        for(String language : languageList){
+            languageContainer.addView(getLanguagePopulatedView(language));
+            Log.d("language", language);
+        }
+    }
+
+    private TextView getLanguagePopulatedView(String language){
+        TextView textView = new TextView(this);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(5, 5, 5,5 );
+        textView.setLayoutParams(layoutParams);
+        textView.setText(language);
+        return textView;
+    }
 }
