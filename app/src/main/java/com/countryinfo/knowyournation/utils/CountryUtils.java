@@ -1,4 +1,4 @@
-package com.example.android.countryinfo;
+package com.countryinfo.knowyournation.utils;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.countryinfo.knowyournation.data.CountryContract;
+import com.countryinfo.knowyournation.data.CountryListDBHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;

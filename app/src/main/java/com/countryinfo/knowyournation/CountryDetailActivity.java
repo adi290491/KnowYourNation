@@ -1,4 +1,4 @@
-package com.example.android.countryinfo;
+package com.countryinfo.knowyournation;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -9,6 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.countryinfo.knowyournation.data.CountryContract;
+import com.countryinfo.knowyournation.pojo.Currency;
+import com.countryinfo.knowyournation.pojo.RegionalBloc;
+import com.countryinfo.knowyournation.utils.CountryDataUtils;
+import com.countryinfo.knowyournation.utils.CountryUtils;
 
 import java.util.List;
 
@@ -71,7 +77,7 @@ public class CountryDetailActivity extends AppCompatActivity {
 
         String flagUrl = cursor.getString(cursor.getColumnIndex(CountryContract.CountryEntry.FLAG));
         Log.d("tag", flagUrl);
-        CountryDataUtils.loadCountryFlag(this, flagUrl, flagImageView);
+       // CountryDataUtils.fetchCountryFlag(this, flagUrl, flagImageView);
 
         String capital = cursor.getString(cursor.getColumnIndex(CountryContract.CountryEntry.CAPITAL));
         Log.d("tag", capital);

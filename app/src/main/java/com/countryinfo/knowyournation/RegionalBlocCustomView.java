@@ -1,10 +1,12 @@
-package com.example.android.countryinfo;
+package com.countryinfo.knowyournation;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.countryinfo.knowyournation.pojo.RegionalBloc;
 
 /**
  * Created by aditya.sawant on 30-01-2018.

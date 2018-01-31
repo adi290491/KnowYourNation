@@ -1,4 +1,4 @@
-package com.example.android.countryinfo;
+package com.countryinfo.knowyournation.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

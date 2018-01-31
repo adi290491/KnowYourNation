@@ -1,4 +1,4 @@
-package com.example.android.countryinfo;
+package com.countryinfo.knowyournation.pojo;
 
 /**
  * Created by Admin on 29-01-2018.
@@ -8,6 +8,15 @@ public class Currency {
     private String code;
     private String name;
     private String symbol;
+
+    public Currency() {
+    }
+
+    public Currency(String code, String name, String symbol) {
+        this.code = code;
+        this.name = name;
+        this.symbol = symbol;
+    }
 
     public String getCode() {
         return code;
