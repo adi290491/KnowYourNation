@@ -33,99 +33,40 @@
             android:layout_gravity="center_horizontal"
             />
 
-        <TextView
-            android:id="@+id/tv_capital"
+        <include
+            layout="@layout/basic_info_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/tv_area"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/tv_region"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/tv_subregion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/tv_coord"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/tv_borders"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/tv_population"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/tv_timezones"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/tv_native_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"/>
+            android:layout_height="wrap_content"/>
 
         <include
             layout="@layout/currency_layout"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"/>
 
-        <TextView
-            android:id="@+id/tv_regional_bloc"
+        <include
+            layout="@layout/regional_bloc_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"/>
+            android:layout_height="wrap_content"/>
 
         <include
             layout="@layout/language_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/tv_calling_code"
+        <include
+            layout="@layout/calling_code_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"/>
+            android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/tv_top_level_domain"
+        <include
+            layout="@layout/top_level_domain_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"/>
+            android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/tv_translations"
+        <include
+            layout="@layout/demonym_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/tv_demonym"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"/>
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 </ScrollView>

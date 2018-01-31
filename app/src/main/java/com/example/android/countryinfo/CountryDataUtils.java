@@ -101,8 +101,24 @@ public final class CountryDataUtils {
         return null;
     }
 
-    public static SpannableStringBuilder getFormattedRegionalBloc(Context context, String regionalBloc) {
-        return getFormattedString(context, R.string.regional_bloc, regionalBloc);
+    public static List<RegionalBloc> getFormattedRegionalBloc(Context context, String regionalBloc) {
+        List<RegionalBloc> regionalBlocList = new ArrayList<>();
+        try {
+            JSONArray regBlocArr = new JSONArray(regionalBloc);
+            for(int i=0;i<regBlocArr.length();i++) {
+                JSONObject rbJson = regBlocArr.getJSONObject(i);
+                RegionalBloc rb = new RegionalBloc();
+                String acronym = rbJson.has("acronym") ? rbJson.getString("acronym") : "N/A";
+                String name = rbJson.has("name") ? rbJson.getString("name") : "N/A";
+                rb.setAcronym(acronym);
+                rb.setName(name);
+                regionalBlocList.add(rb);
+            }
+            return regionalBlocList;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static List<String> getFormattedLanguage(Context context, String languageString) {
@@ -121,12 +137,33 @@ public final class CountryDataUtils {
         return null;
     }
 
-    public static SpannableStringBuilder getFormattedCallingCode(Context context, String callingCode) {
-        return getFormattedString(context, R.string.calling_code, callingCode);
+    public static List<String> getFormattedCallingCode(Context context, String callingCode) {
+        List<String> callingCodeList = new ArrayList<>();
+        try {
+            JSONArray callingCodeArr = new JSONArray(callingCode);
+            for(int i=0;i<callingCodeArr.length();i++){
+                callingCodeList.add(callingCodeArr.getString(i));
+            }
+            return callingCodeList;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public static SpannableStringBuilder getFormattedTopLevelDomain(Context context, String topLevelDomain) {
-        return getFormattedString(context, R.string.top_level_domain, topLevelDomain);
+
+    public static List<String> getFormattedTopLevelDomain(Context context, String topLevelDomain) {
+        List<String> topLevelDomains = new ArrayList<>();
+        try {
+            JSONArray topLevelDomArr = new JSONArray(topLevelDomain);
+            for(int i=0;i<topLevelDomArr.length();i++){
+                topLevelDomains.add(topLevelDomArr.getString(i));
+            }
+            return topLevelDomains;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static SpannableStringBuilder getFormattedTranslations(Context context, String translation) {

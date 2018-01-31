@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,7 +18,7 @@ public class CountryDetailActivity extends AppCompatActivity {
     TextView tvNativeName, tvCurrency, tvRegionalBloc, tvLanguage, tvCallingCode, tvTopLevelDomain, tvTranslations, tvDemonym;
     TextView tvCurrencyCode, tvCurrencyName, tvCurrencySymbol;
     private ImageView flagImageView;
-    private LinearLayout languageContainer;
+    private LinearLayout languageContainer, regionalBlocContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,24 +33,24 @@ public class CountryDetailActivity extends AppCompatActivity {
 
     private void init() {
         tvName = (TextView) findViewById(R.id.tv_name);
-        tvCapital = (TextView) findViewById(R.id.tv_capital);
-        tvArea = (TextView) findViewById(R.id.tv_area);
-        tvRegion = (TextView) findViewById(R.id.tv_region);
-        tvSubRegion = (TextView) findViewById(R.id.tv_subregion);
-        tvCoord = (TextView) findViewById(R.id.tv_coord);
-        tvBorders = (TextView) findViewById(R.id.tv_borders);
-        tvPopulation = (TextView) findViewById(R.id.tv_population);
-        tvTimezones = (TextView) findViewById(R.id.tv_timezones);
-        tvNativeName = (TextView) findViewById(R.id.tv_native_name);
+        tvCapital = (TextView) findViewById(R.id.tv_capital_value);
+        tvArea = (TextView) findViewById(R.id.tv_area_value);
+        tvRegion = (TextView) findViewById(R.id.tv_region_value);
+        tvSubRegion = (TextView) findViewById(R.id.tv_subregion_value);
+        tvCoord = (TextView) findViewById(R.id.tv_coord_value);
+        tvBorders = (TextView) findViewById(R.id.tv_borders_value);
+        tvPopulation = (TextView) findViewById(R.id.tv_population_value);
+        tvTimezones = (TextView) findViewById(R.id.tv_timezones_value);
+        tvNativeName = (TextView) findViewById(R.id.tv_native_name_value);
         initCurrency();
-        tvRegionalBloc = (TextView) findViewById(R.id.tv_regional_bloc);
         flagImageView = (ImageView) findViewById(R.id.iv_flag);
 
-        tvCallingCode = (TextView) findViewById(R.id.tv_calling_code);
-        tvTopLevelDomain = (TextView) findViewById(R.id.tv_top_level_domain);
-        tvTranslations = (TextView) findViewById(R.id.tv_translations);
-        tvDemonym = (TextView) findViewById(R.id.tv_demonym);
+        tvCallingCode = (TextView) findViewById(R.id.tv_calling_code_value);
+        tvTopLevelDomain = (TextView) findViewById(R.id.tv_top_level_domain_value);
+
+        tvDemonym = (TextView) findViewById(R.id.tv_demonym_value);
         languageContainer = (LinearLayout) findViewById(R.id.language_container);
+        regionalBlocContainer = (LinearLayout) findViewById(R.id.regional_bloc_container);
     }
 
     private void initCurrency() {
@@ -74,39 +75,39 @@ public class CountryDetailActivity extends AppCompatActivity {
 
         String capital = cursor.getString(cursor.getColumnIndex(CountryContract.CountryEntry.CAPITAL));
         Log.d("tag", capital);
-        tvCapital.setText(CountryDataUtils.getFormattedCapital(this, capital));
+        tvCapital.setText(capital);
 
         String area = cursor.getString(cursor.getColumnIndex(CountryContract.CountryEntry.AREA));
         Log.d("tag", area);
-        tvArea.setText(CountryDataUtils.getFormattedArea(this, area));
+        tvArea.setText(area);
 
         String region = cursor.getString(cursor.getColumnIndex(CountryContract.CountryEntry.REGION));
         Log.d("tag", region);
-        tvRegion.setText(CountryDataUtils.getFormattedRegion(this, region));
+        tvRegion.setText(region);
 
         String subRegion = cursor.getString(cursor.getColumnIndex(CountryContract.CountryEntry.SUB_REGION));
         Log.d("tag", subRegion);
-        tvSubRegion.setText(CountryDataUtils.getFormattedSubRegion(this, subRegion));
+        tvSubRegion.setText(subRegion);
 
         String coord = cursor.getString(cursor.getColumnIndex(CountryContract.CountryEntry.LAT_LNG));
         Log.d("tag", coord);
-        tvCoord.setText(CountryDataUtils.getCoordinateString(this, coord));
+        tvCoord.setText(coord);
 
         String border = cursor.getString(cursor.getColumnIndex(CountryContract.CountryEntry.BORDERS));
         Log.d("tag", border);
-        tvBorders.setText(CountryDataUtils.getFormattedBorder(this, border));
+        tvBorders.setText(border);
 
         String population = cursor.getString(cursor.getColumnIndex(CountryContract.CountryEntry.POPULATION));
         Log.d("tag", population);
-        tvPopulation.setText(CountryDataUtils.getFormattedPopulation(this, population));
+        tvPopulation.setText(population);
 
         String timezones = cursor.getString(cursor.getColumnIndex(CountryContract.CountryEntry.TIMEZONES));
         Log.d("tag", timezones);
-        tvTimezones.setText(CountryDataUtils.getFormattedTimezones(this, timezones));
+        tvTimezones.setText(timezones);
 
         String nativeName = cursor.getString(cursor.getColumnIndex(CountryContract.CountryEntry.NATIVE_NAME));
         Log.d("tag", nativeName);
-        tvNativeName.setText(CountryDataUtils.getFormattedNativeName(this, nativeName));
+        tvNativeName.setText(nativeName);
 
         String currency = cursor.getString(cursor.getColumnIndex(CountryContract.CountryEntry.CURRENCIES));
         Log.d("tag", currency);
@@ -117,7 +118,8 @@ public class CountryDetailActivity extends AppCompatActivity {
 
         String regionalBloc = cursor.getString(cursor.getColumnIndex(CountryContract.CountryEntry.REGIONAL_BLOCS));
         Log.d("tag", regionalBloc);
-        tvRegionalBloc.setText(CountryDataUtils.getFormattedRegionalBloc(this, regionalBloc));
+        List<RegionalBloc> regionalBlocs = CountryDataUtils.getFormattedRegionalBloc(this, regionalBloc);
+        setRegionalBlocs(regionalBlocs);
 
         String language = cursor.getString(cursor.getColumnIndex(CountryContract.CountryEntry.LANGUAGES));
         Log.d("tag", language);
@@ -126,20 +128,25 @@ public class CountryDetailActivity extends AppCompatActivity {
 
         String callingCode = cursor.getString(cursor.getColumnIndex(CountryContract.CountryEntry.CALLING_CODE));
         Log.d("tag", callingCode);
-        tvCallingCode.setText(CountryDataUtils.getFormattedCallingCode(this, callingCode));
+        List<String> callingCodeList = CountryDataUtils.getFormattedCallingCode(this, callingCode);
+        tvCallingCode.setText(callingCodeList.get(0));
 
         String topLevelDomain = cursor.getString(cursor.getColumnIndex(CountryContract.CountryEntry.TOP_LEVEL_DOMAIN));
         Log.d("tag", topLevelDomain);
-        tvTopLevelDomain.setText(CountryDataUtils.getFormattedTopLevelDomain(this, topLevelDomain));
-
-        String translations = cursor.getString(cursor.getColumnIndex(CountryContract.CountryEntry.TRANSLATIONS));
-        Log.d("tag", translations);
-        tvTranslations.setText(CountryDataUtils.getFormattedTranslations(this, translations));
+        List<String> topLevelDomainList = CountryDataUtils.getFormattedTopLevelDomain(this, topLevelDomain);
+        tvTopLevelDomain.setText(topLevelDomainList.get(0));
 
         String demonym = cursor.getString(cursor.getColumnIndex(CountryContract.CountryEntry.DEMONYM));
         Log.d("tag", demonym);
-        tvDemonym.setText(CountryDataUtils.getFormattedDemonym(this, demonym));
+        tvDemonym.setText(demonym);
+    }
 
+    private void setRegionalBlocs(List<RegionalBloc> regionalBlocs) {
+        for(RegionalBloc rb: regionalBlocs) {
+            RegionalBlocCustomView view = new RegionalBlocCustomView(this);
+            view.setData(rb);
+            regionalBlocContainer.addView(view);
+        }
     }
 
     private void populateLanguage(List<String> languageList) {
@@ -155,6 +162,7 @@ public class CountryDetailActivity extends AppCompatActivity {
         layoutParams.setMargins(5, 5, 5,5 );
         textView.setLayoutParams(layoutParams);
         textView.setText(language);
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
         return textView;
     }
 }

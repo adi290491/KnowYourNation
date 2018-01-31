@@ -78,11 +78,12 @@ public final class CountryUtils {
                 JSONArray topLevelDomainArray = countryObj.getJSONArray("topLevelDomain");
                 String topLevelDomainString =  "";
                 if(topLevelDomainArray.length() > 0) {
-                    for (int j = 0; j < topLevelDomainArray.length(); j++) {
+                   /* for (int j = 0; j < topLevelDomainArray.length(); j++) {
                         topLevelDomainString += topLevelDomainArray.getString(j) + " , ";
                     }
 
-                    topLevelDomainString = topLevelDomainString.substring(0, topLevelDomainString.length() - 1);
+                    topLevelDomainString = topLevelDomainString.substring(0, topLevelDomainString.length() - 1);*/
+                   topLevelDomainString = topLevelDomainArray.toString();
                 }else{
                     topLevelDomainString = "null";
                 }
@@ -95,11 +96,12 @@ public final class CountryUtils {
                 JSONArray callingCodes = countryObj.getJSONArray("callingCodes");
                 String callingCode = "";
                 if(callingCodes.length() > 0) {
-                    for (int k = 0; k < callingCodes.length(); k++) {
-                        callingCode = callingCodes.getString(k) + " , ";
-                    }
-
-                    callingCode = callingCode.substring(0, callingCode.length() - 1);
+//                    for (int k = 0; k < callingCodes.length(); k++) {
+//                        callingCode = callingCodes.getString(k) + " , ";
+//                    }
+//
+//                    callingCode = callingCode.substring(0, callingCode.length() - 1);
+                    callingCode = callingCodes.toString();
                 }else{
                     callingCode = "null";
                 }
@@ -200,12 +202,13 @@ public final class CountryUtils {
                 JSONArray languageArr = countryObj.getJSONArray("languages");
                 String language = "";
                 if(languageArr.length() > 0) {
-                    for (int q = 0; q < languageArr.length(); q++) {
+                   /* for (int q = 0; q < languageArr.length(); q++) {
                         JSONObject languageJson = languageArr.getJSONObject(q);
                         language += languageJson.toString() + " ; ";
                     }
 
-                    language = language.substring(0, language.length() - 1);
+                    language = language.substring(0, language.length() - 1);*/
+                    language = languageArr.toString();
                 }else{
                     language = "null";
                 }
@@ -221,10 +224,11 @@ public final class CountryUtils {
                 JSONArray regionalBlocArr = countryObj.getJSONArray("regionalBlocs");
                 String regionalBloc = "";
                 if(regionalBlocArr.length() > 0) {
-                    for (int r = 0; r < regionalBlocArr.length(); r++) {
+                   /* for (int r = 0; r < regionalBlocArr.length(); r++) {
                         JSONObject regionalBlocJson = regionalBlocArr.getJSONObject(r);
                         regionalBloc += regionalBlocJson.toString() + ";";
-                    }
+                    }*/
+                   regionalBloc = regionalBlocArr.toString();
                 }else{
                     regionalBloc = "null";
                 }
